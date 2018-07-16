@@ -18,9 +18,9 @@ Template.reviews.helpers({
 		return true;
 	}
 	},
-	author: function() {
-		return Meteor.user().profile.username;
-	},
+	// author: function() {
+	// 	return Meteor.user().profile.username;
+	// },
 
 		comms: function() {
       var comms = Comments.find({}, {sort: {createdAt: -1}});
@@ -36,7 +36,7 @@ Template.reviews.events({
 	"click #like": function() {
 		var thisUser = Meteor.userId();
 		var thisReview = Reviews.findOne({_id: this._id})._id;
-		var reviewAuthor = Reviews.findOne({_id: this._id}).userId;
+		var reviewAuthor =Reviews.findOne({_id: this._id}).userId;
 		var Name =  Meteor.user().profile.username;
 		var thisReviewsVotes = Reviews.findOne({_id: this._id}, {voted: {$in: Name}}).voted;
 

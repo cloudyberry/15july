@@ -62,7 +62,8 @@ Template.search.events({
 		var workload = event.target.workload.value;
 		var webcast = event.target.webcast.value;
 		var steepness = event.target.steepness.value;
-		
+
+
 		Meteor.call('endMatch');
 		Meteor.call('returnMatch', recommendation, diff, workload, webcast, steepness);
 
@@ -71,8 +72,8 @@ Template.search.events({
 	"click #like": function() {
 		var thisUser = Meteor.userId();
 		var thisReview = Reviews.findOne({_id: this._id})._id;
-		var reviewAuthor = Reviews.findOne({_id: this._id}).userId;
-		var Name =  Meteor.user().emails[0].address;
+		var reviewAuthor = Meteor.user().profile.username; //Reviews.findOne({_id: this._id}).userId;
+		var Name =  Meteor.user().profile.username;
 		var thisReviewsVotes = Reviews.findOne({_id: this._id}, {voted: {$in: Name}}).voted;
 
 		//detect doublevoting
@@ -97,9 +98,9 @@ Template.search.events({
 	"click #dislike": function() {
 		var thisUser = Meteor.userId();
 		var thisReview = Reviews.findOne({_id: this._id})._id;
-		var reviewAuthor = Reviews.findOne({_id: this._id}).userId;
+		var reviewAuthor = Meteor.user().profile.username; //Reviews.findOne({_id: this._id}).userId;
 		//var Name = Meteor.user().username;
-		var Name = Meteor.user().emails[0].address;
+		var Name = Meteor.user().profile.username;
 		var thisReviewsVotes = Reviews.findOne({_id: this._id}, {voted: {$in: Name}}).voted;
 
 		if (thisReviewsVotes.indexOf(Name) > -1) {

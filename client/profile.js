@@ -42,7 +42,9 @@ Template.profile.helpers({
 		// var username = Meteor.user().username;
 		// var userId = Meteor.userId();
 		var username = Meteor.user().profile.username;
-		var userReviews = Reviews.find({"author": username}, {sort: {createdAt: -1}});
+		var userId = Meteor.userId();
+		var userReviews = Reviews.find({userId: userId}, {sort: {createdAt: -1}});
+	//	var userReviews = Reviews.find({"author": username}, {sort: {createdAt: -1}});
 		return userReviews;
 	},
 	//to display the respective scores of the users in the profile

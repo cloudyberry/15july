@@ -18,9 +18,6 @@ Template.reviews.helpers({
 		return true;
 	}
 	},
-	// author: function() {
-	// 	return Meteor.user().profile.username;
-	// },
 
 		comms: function() {
       var comms = Comments.find({}, {sort: {createdAt: -1}});
